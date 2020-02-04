@@ -1,0 +1,42 @@
+﻿<Page
+    x:Class="epicture.SearchPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:epicture"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="#5A9FBC"
+    Width="500"
+    Height="714">
+
+    <Grid>
+        <AppBarButton Name="uploadButton" Style="{StaticResource ButtonTool}" Icon="Upload" Label="Upload" Margin="375,640,0,0" Click="UploadButton_Click"/>
+        <AppBarButton Name="favoriteButton" Style="{StaticResource ButtonTool}" Icon="Favorite" Label="Favorite" Margin="-125,640,0,0" Click="FavoriteButton_Click"/>
+        <AppBarButton Name="searchButton" Style="{StaticResource ButtonTool}" Icon="BrowsePhotos" Label="Search" Margin="125,640,0,0"/>
+        <AppBarButton Name="photoButton" Style="{StaticResource ButtonTool}" Icon="Camera" Label="MyPhotos" Margin="-375,640,0,0" Click="PhotoButton_Click"/>
+        <SearchBox Name="SearchTextBox" Margin="0,30,0,0" PlaceholderText="Search" VerticalAlignment="Top" HorizontalAlignment="Center" Width="250" Height="40" KeyDown="SearchTextBox_KeyDown" QuerySubmitted="SearchTextBox_QuerySubmitted"/>
+        <ScrollViewer Margin="0,90,0,75">
+            <ListView Name="ImagesLV">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:MyImage">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="490"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Width="480" Height="480" Background="#4F889F" CornerRadius="15">
+                                <Image Source="{Binding Source}" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <Button Tag="{Binding Id}" Content="{Binding Favorite}" FontSize="28" FontWeight="ExtraBold"  Background="Transparent" Foreground="Red" Margin="400,400,0,0" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top" Width="50" Click="AddFavoriteButton_Click"/>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <Button/>
+            </ListView>
+        </ScrollViewer>
+    </Grid>
+</Page>
